@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { withTracker } from 'meteor/react-meteor-data';
 
 // Views
 import Home from './views/Home';
+import Signup from './views/Signup';
 import CreateStrip from './views/CreateStrip';
 
 // Components
 import Navbar from './components/Navbar';
+import AuthRoute from './components/AuthRoute';
 
 class App extends Component {
   render() {
@@ -14,10 +18,11 @@ class App extends Component {
       <div>
         <Router>
           <div>
-            <Navbar />
+            <Navbar currentUser={this.props.currentUser} />
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/create-strip" component={CreateStrip} />
+              <AuthRoute exact path="/" component={Home} {...this.props} />
+              <Route exact path="/signup" component={Signup} />
+              <AuthRoute path="/create-strip" component={CreateStrip} {...this.props} />
             </Switch>
           </div>
         </Router>
@@ -26,4 +31,8 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withTracker(props => {
+  return {
+    currentUser: Meteor.user(),
+  }
+})(App);
