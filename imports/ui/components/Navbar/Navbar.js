@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 
+import './Navbar.css';
+
 class Navbar extends Component {
   logout = () => {
     Meteor.logout();
@@ -11,10 +13,12 @@ class Navbar extends Component {
     const { currentUser } = this.props;
 
     return (
-      <nav>
+      <nav id="navbar">
         <NavLink to="/">Home</NavLink>
         { currentUser ? null : <NavLink to="/signup">Signup</NavLink> }
-        <NavLink to="/create-strip">Create Strip</NavLink>
+        { currentUser ? <NavLink to="/build/strip">Build Strip</NavLink> : null }
+        { currentUser ? <NavLink to="/build/assay">Build Assay</NavLink> : null }
+        { currentUser ? <NavLink to="/build/experiment">Build Experiment</NavLink> : null }
         { currentUser ? <button type="button" onClick={this.logout}>Logout</button> : null }
       </nav>
     );

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import StripDisplay from '../../components/StripDisplay';
 
-class CreateStrip extends Component {
+class BuildStrip extends Component {
   render() {
     return (
       <div>
@@ -12,4 +12,4 @@ class CreateStrip extends Component {
   }
 }
 
-export default CreateStrip;
+export default BuildStrip;

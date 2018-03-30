@@ -6,7 +6,9 @@ import { withTracker } from 'meteor/react-meteor-data';
 // Views
 import Home from './views/Home';
 import Signup from './views/Signup';
-import CreateStrip from './views/CreateStrip';
+import BuildStrip from './views/BuildStrip';
+import BuildAssay from './views/BuildAssay';
+import BuildExperiment from './views/BuildExperiment';
 
 // Components
 import Navbar from './components/Navbar';
@@ -22,7 +24,9 @@ class App extends Component {
             <Switch>
               <AuthRoute exact path="/" component={Home} {...this.props} />
               <Route exact path="/signup" component={Signup} />
-              <AuthRoute path="/create-strip" component={CreateStrip} {...this.props} />
+              <AuthRoute path="/build/strip" component={BuildStrip} {...this.props} />
+              <AuthRoute path="/build/assay" component={BuildAssay} {...this.props} />
+              <AuthRoute path="/build/experiment" component={BuildExperiment} {...this.props} />
             </Switch>
           </div>
         </Router>
